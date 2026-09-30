@@ -33,6 +33,8 @@ build it by discussing it with me.**
   maybe metal parts from a nearby school's auto shop). Pick parts first, then
   design around them.
 - **Budget:** about $200, probably self-funded, so keep it lean and buy in phases.
+- **Languages (leaning, not final):** Python for ROS 2 nodes (I know it well; ROS
+  doesn't officially support Java). Arduino C++ for the firmware.
 - **Parts list:** `hardware/BOM.md`, which I write.
 
 ## Current state
