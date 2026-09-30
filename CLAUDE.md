@@ -33,6 +33,12 @@ build it by discussing it with me.**
   (4200 counts/wheel turn). ~115 RPM no-load, ~0.48 m/s top speed on 80mm wheels,
   0.75 kg·cm rated torque (~2.5× my rough carpet estimate). Picked as the balance of
   speed vs torque. 12V fits a 3S battery. Check the store actually sells the 150:1 version.
+- **LiDAR (chosen, not bought):** Slamtec RPLidar C1, ~$99, 12m max / 5cm min range.
+  Driver `sllidar_ros2` lists the C1; last commit ~2 years old, but a successful build
+  was reported ~Sept 2025 with no critical issues. Backup driver: `rplidar_ros` (ROS 2 branch).
+- **Power:** one 3S (~11.1V) battery for everything: motors directly (through the driver),
+  Pi through a 5V ≥5A regulator. Low brownout risk (motors stall <0.75A each), cheaper,
+  lighter. Replaces my earlier two-battery idea.
 - **Wheels:** 80mm Pololu wheels matched to the motor shaft.
 - **Chassis:** my own design in Onshape, 3D printed (school or library printers;
   maybe metal parts from a nearby school's auto shop). Pick parts first, then
@@ -54,6 +60,8 @@ build it by discussing it with me.**
   (3S, one pack or two?), motor driver and regulator.
 
 ## Open questions
-- Which caster, battery, motor driver and regulator? (Candidate LiDAR: RPLidar A1/A2.)
+- Budget is tight: parts so far total ~$165–230 before battery, charger and driver.
+  Options: phase the IMU later, borrow a charger from FRC.
+- Which caster, specific battery, charger, motor driver and regulator?
 - Printer build volumes?
 - Could my FRC team lend parts or a balance charger?
