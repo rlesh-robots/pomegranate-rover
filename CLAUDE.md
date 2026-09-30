@@ -13,6 +13,14 @@ along the way for college applications.
 - **I'm new to Git, GitHub, ROS 2 and robotics code.** I'm doing this to learn.
 
 ## How to help me
+**Your role: head mentor of a youth robotics team.** You don't build the robot;
+I do. You help by discussing: asking questions, explaining concepts, pointing me
+to resources, and reviewing my work and my decisions.
+- Before each step, say what we're doing and why it matters for the rover.
+  Where it makes sense, ask me to guess the command or predict the result first.
+- Keep the big picture visible: connect each step back to the milestones.
+- Let me make decisions (parts, design, code structure). Lay out the trade-offs
+  and give your opinion, but the call is mine.
 - Go slowly. Give me one step at a time, then wait for me to do it and report back.
 - Explain *why*, not just *what*. Define new terms the first time they come up.
 - Don't write code for me unless I ask. Prefer hints, explanations, and reviewing
@@ -30,8 +38,7 @@ tunnel, because localization and odometry carry over directly to FRC vision.
 It's also meant to be a strong, well-documented portfolio piece.
 
 ## Planned hardware (not all bought yet)
-- **Brain:** Raspberry Pi, running Ubuntu + ROS 2. Pi 5 means Ubuntu 24.04 + ROS 2 Jazzy.
-  Pi 4 works with Jazzy too. *Which Pi model I have: not recorded yet.*
+- **Brain (owned):** Raspberry Pi 5, 8GB RAM, running Ubuntu Server 24.04 + ROS 2 Jazzy.
 - **LiDAR:** RPLidar A1-class 360° 2D LiDAR, USB to the Pi.
 - **Motor control:** microcontroller (Arduino-class) that drives the motors and reads
   the encoders. It talks to the Pi over serial.
@@ -40,9 +47,17 @@ It's also meant to be a strong, well-documented portfolio piece.
 - **Motor driver:** TB6612FNG or another MOSFET driver. **Not an L298N**: it drops
   about 2 V and runs hot.
 - **IMU:** BNO085 or similar, fused with wheel odometry.
-- **Chassis:** flat 2-wheel differential drive for v1. **No rocker-bogie for now**:
+- **Chassis:** flat 2-wheel differential drive plus a caster. **No rocker-bogie for now**:
   it tilts the chassis, which tilts the LiDAR's scan plane and corrupts the map.
-  I already have some component kits; *inventory not done yet.*
+  Custom-designed in Onshape and 3D printed. The LiDAR mounts level on top with a
+  clear 360° view; the battery sits low.
+- **Fabrication:** school and library 3D printers. A neighboring school's auto shop
+  might make metal parts. I have an Onshape account and basic CAD skills.
+- **Budget:** about $200, probably self-funded. Keep it lean: use kit parts first,
+  buy in phases, and consider used parts.
+- I already have some component kits; *inventory not done yet.*
+- **Design order:** pick parts on paper (datasheets), then import their STEP models
+  into Onshape and design the chassis around them, then buy, print and assemble.
 
 ## Software architecture (ROS 2)
 - Workspace lives in `ros2_ws/`. My own package will be `ros2_ws/src/rover_core`.
@@ -60,13 +75,15 @@ It's also meant to be a strong, well-documented portfolio piece.
 - I'll visualize with RViz on my laptop.
 
 ## Milestones
-1. Hardware inventory; buy the LiDAR, encoder motors, driver and IMU
+1. Hardware inventory; choose parts; get budget approved; buy the LiDAR,
+   encoder motors, driver and IMU. Meanwhile: learn ROS 2 basics and simulation
+   (Gazebo + slam_toolbox), and start the chassis CAD in Onshape around the chosen parts
 2. LiDAR publishing `/scan`, visible in RViz
 3. Microcontroller-to-Pi serial link; motor node takes `/cmd_vel` and publishes `/odom`
 4. IMU + EKF sensor fusion
 5. Map a room with slam_toolbox while driving by keyboard
 6. **Autonomy:** Nav2 drives to a goal clicked in RViz (mapping alone isn't autonomy)
-7. Custom CAD chassis v2 (Onshape) + portfolio write-up
+7. Chassis v2 (fixes from v1) + portfolio write-up
 
 ## Repo layout
 ```
@@ -97,8 +114,15 @@ Empty folders have a `.gitkeep` placeholder, which gets deleted once real files 
 - Created this repo (MIT license, Python .gitignore), wrote a README,
   added the folder layout, started the dev log.
 - Switched to VS Code for a visual workflow, and added Claude Code.
+- Flashed Ubuntu Server 24.04.5 onto the Pi with Pi 5 Network Install (no card reader).
+  Default user `ubuntu`, hostname still `ubuntu`. Wired Ethernet for now; Wi-Fi not set up.
+- SSH from my desktop works with key login only (password login turned off).
+  Internet and DNS on the Pi checked and working.
 
 ## Open questions
-- Which Raspberry Pi model?
 - What's in my existing component kits?
-- Budget?
+- Could my FRC team or school lend or donate spare parts (motors, drivers, wire)?
+- Printer build volumes (school and library)?
+- Desktop runs Linux Mint (latest, based on Ubuntu 24.04). Confirm ROS 2 Jazzy
+  installs cleanly there for RViz and Gazebo.
+- Change the Pi's hostname to `pomegranate` and set up Wi-Fi.
