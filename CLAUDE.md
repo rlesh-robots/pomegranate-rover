@@ -29,6 +29,11 @@ build it by discussing it with me.**
 - **Drivetrain:** differential drive, 2 driven wheels + a caster. Rejected swerve
   and 4-wheel skid steer (cost, complexity, wheel slip hurts odometry). Swerve is
   a maybe for a later version.
+- **Motors (chosen, not bought):** GM16 (16SG-030PA-EN) 12V, 150:1, with 7 PPR encoder
+  (4200 counts/wheel turn). ~115 RPM no-load, ~0.48 m/s top speed on 80mm wheels,
+  0.75 kg·cm rated torque (~2.5× my rough carpet estimate). Picked as the balance of
+  speed vs torque. 12V fits a 3S battery. Check the store actually sells the 150:1 version.
+- **Wheels:** 80mm Pololu wheels matched to the motor shaft.
 - **Chassis:** my own design in Onshape, 3D printed (school or library printers;
   maybe metal parts from a nearby school's auto shop). Pick parts first, then
   design around them.
@@ -44,10 +49,11 @@ build it by discussing it with me.**
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
   Arduino starter kit (breadboards, wires, resistors, etc.). No motors, driver,
   sensors or battery suitable for the rover yet.
-- **Where we left off:** filling out the "need" rows in the BOM (motor driver,
-  wheels, caster, battery, charger, 5V regulator), then choosing motors.
+- **Where we left off:** motors chosen. Next: caster (carpet, so ≥1" ball or small
+  swivel; the height comes from my side-view sketch of the chassis), then battery
+  (3S, one pack or two?), motor driver and regulator.
 
 ## Open questions
-- Which LiDAR, motors, motor driver, battery and regulator?
+- Which caster, battery, motor driver and regulator? (Candidate LiDAR: RPLidar A1/A2.)
 - Printer build volumes?
 - Could my FRC team lend parts or a balance charger?
