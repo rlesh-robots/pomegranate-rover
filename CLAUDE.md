@@ -53,22 +53,31 @@ build it by discussing it with me.**
 
 ## Current state
 - **Pi 5, 8GB:** Ubuntu Server 24.04.5, user `ubuntu`, hostname still `ubuntu`,
-  wired Ethernet only (no Wi-Fi yet). SSH from my desktop with key login only.
+  Ethernet plus Wi-Fi (netplan file `/etc/netplan/60-wifi.yaml` on the Pi, not in the repo).
+  SSH from my desktop with key login only.
 - **Desktop:** Linux Mint (latest, based on Ubuntu 24.04).
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
   Arduino starter kit (breadboards, wires, resistors, etc.). No motors, driver,
   sensors or battery suitable for the rover yet.
-- **Where we left off:** candidates found for every part except the caster:
-  Roaring Top 3S 2200mAh 25C XT60 battery (~$14), ISDT PD60S charger (USB-C PD input,
-  can use a phone charger), fixed 5V 5A USB-C buck converter (8–32V in, no PD), and a
-  10A dual H-bridge driver (3–18V motor, 3–18V logic). Not yet confirmed as decisions.
-  Next: total the BOM against $200, then size the caster from a chassis side-view sketch.
+- **Parts (all marked Decided in the BOM, none bought):** Roaring Top 3S 2200mAh 25C
+  XT60 battery (22.4×32×102mm, 159g), ISDT PD60S charger (USB-C PD input, XT60 +
+  JST-XH balance port), fixed 5V 5A USB-C buck converter (8–32V in, no PD), 10A dual
+  H-bridge driver (3–18V motor and logic), D50 M8 threaded swivel caster (60–65mm
+  tall, height adjustable with nuts), LiPo bag. FRC team's charger doesn't fit.
+- **Where we left off:** starting the chassis design in Onshape. Axle sits 40mm up
+  (80mm wheels); caster is ~62mm tall, so the mount has to make up ~10–15mm.
+- **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
+  192.168.0.x; the Wi-Fi comes from a second router behind it (Pi wlan0 is on
+  192.168.68.x/22). The desktop can't reach the Pi's Wi-Fi address, and it has no Wi-Fi
+  card. SSH still works over Ethernet (192.168.0.75). Needs fixing before the rover
+  drives untethered (ROS also needs both on one network). Options: Wi-Fi router into
+  access point mode (needs a parent's OK), or a USB Wi-Fi adapter for the desktop.
+  I decided to defer this and keep working over Ethernet for now.
+- **Printer:** Prusa Core One, build volume 250 × 220 × 270mm.
 - **Wiring notes:** Arduino is powered and talks over USB from the Pi. Arduino GND must
   connect directly to the driver GND.
 
 ## Open questions
-- Budget is tight: parts so far total ~$165–230 before battery, charger and driver.
-  Options: phase the IMU later, borrow a charger from FRC.
-- Which caster, specific battery, charger, motor driver and regulator?
-- Printer build volumes?
-- Could my FRC team lend parts or a balance charger?
+- BOM total is ~$225 before shipping (phase 1 ≈ $124, LiDAR + IMU ≈ $100), plus
+  unlisted small parts: power switch, fuse, XT60 connectors and wire, screws, filament.
+- How to make up the caster height: raise the whole plate, a raised mount, or a recess?
