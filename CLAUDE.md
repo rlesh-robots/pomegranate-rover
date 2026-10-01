@@ -36,6 +36,9 @@ build it by discussing it with me.**
 - **LiDAR (chosen, not bought):** Slamtec RPLidar C1, ~$99, 12m max / 5cm min range.
   Driver `sllidar_ros2` lists the C1; last commit ~2 years old, but a successful build
   was reported ~Sept 2025 with no critical issues. Backup driver: `rplidar_ros` (ROS 2 branch).
+- **IMU (chosen, phase 3):** BNO085 (~$25), over the BNO055 (older, pricier) and MPU-6050
+  (discontinued, so clone quality varies). Use the "game rotation vector" mode (no
+  magnetometer indoors). Likely connects to the Arduino Mega (Pi I2C has issues with BNO08x).
 - **Power:** one 3S (~11.1V) battery for everything: motors directly (through the driver),
   Pi through a 5V ≥5A regulator. Low brownout risk (motors stall <0.75A each), cheaper,
   lighter. Replaces my earlier two-battery idea.
@@ -55,9 +58,13 @@ build it by discussing it with me.**
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
   Arduino starter kit (breadboards, wires, resistors, etc.). No motors, driver,
   sensors or battery suitable for the rover yet.
-- **Where we left off:** motors chosen. Next: caster (carpet, so ≥1" ball or small
-  swivel; the height comes from my side-view sketch of the chassis), then battery
-  (3S, one pack or two?), motor driver and regulator.
+- **Where we left off:** candidates found for every part except the caster:
+  Roaring Top 3S 2200mAh 25C XT60 battery (~$14), ISDT PD60S charger (USB-C PD input,
+  can use a phone charger), fixed 5V 5A USB-C buck converter (8–32V in, no PD), and a
+  10A dual H-bridge driver (3–18V motor, 3–18V logic). Not yet confirmed as decisions.
+  Next: total the BOM against $200, then size the caster from a chassis side-view sketch.
+- **Wiring notes:** Arduino is powered and talks over USB from the Pi. Arduino GND must
+  connect directly to the driver GND.
 
 ## Open questions
 - Budget is tight: parts so far total ~$165–230 before battery, charger and driver.
