@@ -46,6 +46,10 @@ build it by discussing it with me.**
 - **Chassis:** my own design in Onshape, 3D printed (school or library printers;
   maybe metal parts from a nearby school's auto shop). Pick parts first, then
   design around them.
+- **Pi mounting:** bare Pi 5 on standoffs (no CanaKit case), for a simpler design. Needs
+  cooling: reuse the case's fan if it comes out, else buy an active cooler.
+- **Layout (first CAD draft):** two drive wheels in front, caster trailing behind, Pi on
+  a raised mount in the middle. Plate was 2.5mm; motor mount and second level not designed yet.
 - **Budget:** about $200, probably self-funded, so keep it lean and buy in phases.
 - **Languages (leaning, not final):** Python for ROS 2 nodes (I know it well; ROS
   doesn't officially support Java). Arduino C++ for the firmware.
