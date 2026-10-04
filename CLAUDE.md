@@ -66,10 +66,15 @@ build it by discussing it with me.**
 - **Parts (all marked Decided in the BOM, none bought):** Roaring Top 3S 2200mAh 25C
   XT60 battery (22.4×32×102mm, 159g), ISDT PD60S charger (USB-C PD input, XT60 +
   JST-XH balance port), fixed 5V 5A USB-C buck converter (8–32V in, no PD), 10A dual
-  H-bridge driver (3–18V motor and logic), D50 M8 threaded swivel caster (60–65mm
-  tall, height adjustable with nuts), LiPo bag. FRC team's charger doesn't fit.
-- **Where we left off:** starting the chassis design in Onshape. Axle sits 40mm up
-  (80mm wheels); caster is ~62mm tall, so the mount has to make up ~10–15mm.
+  H-bridge driver (3–18V motor and logic), McMaster 24215T69 caster ($2.62: 2" nylon twin-wheel
+  swivel, 60.3mm mount height, 3/8"-16 × 3/4" stem, STEP available; picked over the
+  1-5/8" version to climb my ~10mm rug edge, and over the D50 M8 with no published
+  height), LiPo bag. FRC team's charger doesn't fit.
+- **Where we left off:** chassis layout decided from my side-view sketch: plate underside
+  at caster height (60.3mm), motors hang below on bracket walls with the motor centre
+  20.3mm under the plate (axle at 40mm; ~12.6mm gap above the motor). Next: find the
+  GM16 face mounting-hole pattern, design the bracket (wall + gussets, printed with
+  the plate), thicken or rib the plate.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
   192.168.0.x; the Wi-Fi comes from a second router behind it (Pi wlan0 is on
   192.168.68.x/22). The desktop can't reach the Pi's Wi-Fi address, and it has no Wi-Fi
@@ -82,6 +87,7 @@ build it by discussing it with me.**
   connect directly to the driver GND.
 
 ## Open questions
-- BOM total is ~$225 before shipping (phase 1 ≈ $124, LiDAR + IMU ≈ $100), plus
+- BOM total is ~$210 before shipping (phase 1 ≈ $110, LiDAR + IMU ≈ $100), plus
   unlisted small parts: power switch, fuse, XT60 connectors and wire, screws, filament.
-- How to make up the caster height: raise the whole plate, a raised mount, or a recess?
+- Where does the weight go so the rover doesn't tip forward when it stops (battery position)?
+- Second level for the Pi, Mega and LiDAR: not designed yet.
