@@ -70,11 +70,18 @@ build it by discussing it with me.**
   swivel, 60.3mm mount height, 3/8"-16 × 3/4" stem, STEP available; picked over the
   1-5/8" version to climb my ~10mm rug edge, and over the D50 M8 with no published
   height), LiPo bag. FRC team's charger doesn't fit.
-- **Where we left off:** chassis layout decided from my side-view sketch: plate underside
-  at caster height (60.3mm), motors hang below on bracket walls with the motor centre
-  20.3mm under the plate (axle at 40mm; ~12.6mm gap above the motor). Next: find the
-  GM16 face mounting-hole pattern, design the bracket (wall + gussets, printed with
-  the plate), thicken or rib the plate.
+- **Where we left off:** chassis in Onshape, driven by variables. Plate 5mm, underside at
+  caster height (60.325mm). Mirrored motor walls at the plate's side edges: 4mm thick,
+  15.6 wide, motor centre 20.325 below the plate, wall runs 12 below the centre, 6mm
+  chamfer as gusset (clears the motor top by ~6.6mm). From the GM16 drawing: 2× M2
+  holes 9mm apart (Ø2.4 clearance), boss Ø4.0 × 1.5 (Ø4.5 hole), 3mm D-shaft 10mm long,
+  body 36mm long, JST ZH 6-pin connector. 2mm pocket for the gearbox face, so ~8mm of
+  shaft past the wall: full grip for the 6.5mm Pololu hub (3mm D insert). Tire clearance:
+  ring groove (Ø71–Ø89 around the axle) cut 6mm into the plate edge. Front of the plate is
+  ~30mm ahead of the axle, so the tires stick out in front. Next: caster position, battery
+  placement (tipping), second level.
+- **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
+  force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
   192.168.0.x; the Wi-Fi comes from a second router behind it (Pi wlan0 is on
   192.168.68.x/22). The desktop can't reach the Pi's Wi-Fi address, and it has no Wi-Fi
