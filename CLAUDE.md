@@ -80,6 +80,8 @@ build it by discussing it with me.**
   ring groove (Ø71–Ø89 around the axle) cut 6mm into the plate edge. Front of the plate is
   ~30mm ahead of the axle, so the tires stick out in front. Next: caster position, battery
   placement (tipping), second level.
+- **Next phase:** phase 1 parts to be ordered soon. CAD paused until I can measure the real
+  parts; meanwhile starting on software structure.
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is

@@ -27,7 +27,10 @@ P1 | 10 | 133.55
 P2 | 2 | $89.49
 
 #### Miscellaneous:
-Power switch\
+3/8" nyloc nut/nyloc nut pack\
+washers
+
+Power switch?\
 Fuse\
 XT60 connectors/thicker wire\
 Screws, Standoffs\
