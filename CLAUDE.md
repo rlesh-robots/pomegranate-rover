@@ -51,6 +51,9 @@ build it by discussing it with me.**
 - **Layout (first CAD draft):** two drive wheels in front, caster trailing behind, Pi on
   a raised mount in the middle. Plate was 2.5mm; motor mount and second level not designed yet.
 - **Budget:** about $200, probably self-funded, so keep it lean and buy in phases.
+- **ROS:** ROS 2 Jazzy (matches Ubuntu 24.04; Humble would need 22.04). Pi gets
+  `ros-jazzy-ros-base` (no GUI); RViz runs on the desktop. Following the official
+  docs.ros.org Jazzy deb install (2025+ `ros2-apt-source` method). Pi locale is C.UTF-8 (fine).
 - **Languages (leaning, not final):** Python for ROS 2 nodes (I know it well; ROS
   doesn't officially support Java). Arduino C++ for the firmware.
 - **Parts list:** `hardware/BOM.md`, which I write.
@@ -59,6 +62,8 @@ build it by discussing it with me.**
 - **Pi 5, 8GB:** Ubuntu Server 24.04.5, user `ubuntu`, hostname still `ubuntu`,
   Ethernet plus Wi-Fi (netplan file `/etc/netplan/60-wifi.yaml` on the Pi, not in the repo).
   SSH from my desktop with key login only.
+- **ROS on the Pi:** Jazzy `ros-base` + `ros-dev-tools` installed and working; sourced
+  from `~/.bashrc`. SSH shortcut on desktop: `ssh Pomegranate` (in `~/.ssh/config`).
 - **Desktop:** Linux Mint (latest, based on Ubuntu 24.04).
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
   Arduino starter kit (breadboards, wires, resistors, etc.). No motors, driver,
