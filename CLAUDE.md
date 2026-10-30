@@ -87,6 +87,13 @@ build it by discussing it with me.**
   placement (tipping), second level.
 - **Next phase:** phase 1 parts to be ordered soon. CAD paused until I can measure the real
   parts; meanwhile starting on software structure.
+- **Software progress:** derived diff-drive kinematics myself (in `docs/Tools.md`: inverse
+  and forward, plus counts→m/s with Δcounts/Δt, 0.0000598 m per count). Protocol design:
+  text lines ending in `\n`, cumulative encoder counts, Arduino watchdog stops motors;
+  `firmware/protocol.md` is empty and waiting for the written spec. Ran and read the
+  demo_nodes_py talker/listener/qos/serialized nodes; understand nodes, publishers,
+  subscriptions, timers, callbacks, spin and QoS (tested the best-effort → reliable mismatch).
+  Python classes/inheritance are new to me; practice still recommended.
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
