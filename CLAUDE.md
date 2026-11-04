@@ -95,8 +95,11 @@ build it by discussing it with me.**
   subscriptions, timers, callbacks, spin and QoS (tested the best-effort → reliable mismatch).
   Python classes/inheritance are new to me; practice still recommended.
   Repo cloned on the Pi (`~/pomegranate-rover`, deploy key with write access, no-reply
-  git email). Created practice package `ros2_ws/src/py_pubsub` (ament_python) on the Pi;
-  writing my own talker from memory is in progress (not committed yet).
+  git email). Practice package `ros2_ws/src/py_pubsub` (ament_python): my own talker
+  (`MyTalker`, node `my_talker`, topic `my_chatter`, entry point `talker`) works with
+  `ros2 run py_pubsub talker`; committed and pushed from the Pi. Build with
+  `colcon build --symlink-install` from `ros2_ws`, then `source install/setup.bash`.
+  Next: write the listener myself.
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
