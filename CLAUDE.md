@@ -33,7 +33,7 @@ build it by discussing it with me.**
   (4200 counts/wheel turn). ~115 RPM no-load, ~0.48 m/s top speed on 80mm wheels,
   0.75 kg·cm rated torque (~2.5× my rough carpet estimate). Picked as the balance of
   speed vs torque. 12V fits a 3S battery. Check the store actually sells the 150:1 version.
-- **LiDAR (chosen, not bought):** Slamtec RPLidar C1, ~$99, 12m max / 5cm min range.
+- **LiDAR (arrived 2026-11-03):** Slamtec RPLidar C1, ~$99, 12m max / 5cm min range.
   Driver `sllidar_ros2` lists the C1; last commit ~2 years old, but a successful build
   was reported ~Sept 2025 with no critical issues. Backup driver: `rplidar_ros` (ROS 2 branch).
 - **IMU (chosen, phase 3):** BNO085 (~$25), over the BNO055 (older, pricier) and MPU-6050
@@ -94,6 +94,9 @@ build it by discussing it with me.**
   demo_nodes_py talker/listener/qos/serialized nodes; understand nodes, publishers,
   subscriptions, timers, callbacks, spin and QoS (tested the best-effort → reliable mismatch).
   Python classes/inheritance are new to me; practice still recommended.
+  Repo cloned on the Pi (`~/pomegranate-rover`, deploy key with write access, no-reply
+  git email). Created practice package `ros2_ws/src/py_pubsub` (ament_python) on the Pi;
+  writing my own talker from memory is in progress (not committed yet).
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
