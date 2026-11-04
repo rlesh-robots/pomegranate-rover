@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+ros2_ws/src/sllidar_ros2/
+
+
 # C extensions
 *.so
 

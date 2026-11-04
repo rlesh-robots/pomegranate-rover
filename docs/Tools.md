@@ -12,7 +12,9 @@ Velocity (forward) = (Vleft + Vright) / 2 | v = (v_left + v_right) / 2
 
 Velocity (wheel) = Encoder counts * meters per count / t | (Δcounts*m/c)/Δt (meters per count is 0.06 millimeters / 0.0000598 meters)
 
-## For examples
-/opt/ros/jazzy/lib/python3.12/site-packages/demo_nodes_py/
+LiDAR driver: sllidar_ros2, https://github.com/Slamtec/sllidar_ros2, commit 3430009. i already gitignored it.
 
+## For examples
+/opt/ros/jazzy/lib/python3.12/site-packages/demo_nodes_py/ \
+/\ \
 go here for publisher/listener nodes with timed examples
