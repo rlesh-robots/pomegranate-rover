@@ -36,6 +36,10 @@ build it by discussing it with me.**
 - **LiDAR (arrived 2026-11-03):** Slamtec RPLidar C1, ~$99, 12m max / 5cm min range.
   Driver `sllidar_ros2` lists the C1; last commit ~2 years old, but a successful build
   was reported ~Sept 2025 with no critical issues. Backup driver: `rplidar_ros` (ROS 2 branch).
+  Neither apt driver supports the C1 (apt `rplidar_ros` is 2.1.0 from 2022; its C1 support is
+  unreleased; `rplidar_driver` doesn't mention C1), so I build `sllidar_ros2` from source:
+  cloned into `ros2_ws/src/`, git-ignored, URL + commit noted in `docs/Tools.md`.
+  On the Pi the CP210x adapter shows up as `/dev/ttyUSB0`; user `ubuntu` added to `dialout`.
 - **IMU (chosen, phase 3):** BNO085 (~$25), over the BNO055 (older, pricier) and MPU-6050
   (discontinued, so clone quality varies). Use the "game rotation vector" mode (no
   magnetometer indoors). Likely connects to the Arduino Mega (Pi I2C has issues with BNO08x).
@@ -54,6 +58,8 @@ build it by discussing it with me.**
 - **ROS:** ROS 2 Jazzy (matches Ubuntu 24.04; Humble would need 22.04). Pi gets
   `ros-jazzy-ros-base` (no GUI); RViz runs on the desktop. Following the official
   docs.ros.org Jazzy deb install (2025+ `ros2-apt-source` method). Pi locale is C.UTF-8 (fine).
+- **Desktop ROS:** install ROS 2 Jazzy (`ros-jazzy-desktop`) on Mint to run RViz locally.
+  Chosen over X11 forwarding (laggy 3D), Foxglove (third-party) and Docker.
 - **Languages (leaning, not final):** Python for ROS 2 nodes (I know it well; ROS
   doesn't officially support Java). Arduino C++ for the firmware.
 - **Parts list:** `hardware/BOM.md`, which I write.
@@ -66,8 +72,10 @@ build it by discussing it with me.**
   from `~/.bashrc`. SSH shortcut on desktop: `ssh Pomegranate` (in `~/.ssh/config`).
 - **Desktop:** Linux Mint (latest, based on Ubuntu 24.04).
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
-  Arduino starter kit (breadboards, wires, resistors, etc.). No motors, driver,
-  sensors or battery suitable for the rover yet.
+  Arduino starter kit (breadboards, wires, resistors, etc.). Arrived by 2026-11-04:
+  LiDAR, 1 GM16 gearmotor (second one ordered), 3S battery,
+  charger, LiPo bag, 5V buck converter, wheels, IMU. Still missing: motor driver, caster,
+  second motor, small hardware.
 - **Parts (all marked Decided in the BOM, none bought):** Roaring Top 3S 2200mAh 25C
   XT60 battery (22.4×32×102mm, 159g), ISDT PD60S charger (USB-C PD input, XT60 +
   JST-XH balance port), fixed 5V 5A USB-C buck converter (8–32V in, no PD), 10A dual
@@ -99,7 +107,18 @@ build it by discussing it with me.**
   (`MyTalker`, node `my_talker`, topic `my_chatter`, entry point `talker`) works with
   `ros2 run py_pubsub talker`; committed and pushed from the Pi. Build with
   `colcon build --symlink-install` from `ros2_ws`, then `source install/setup.bash`.
-  Next: write the listener myself.
+  Listener (`MyListener`, node `my_listener`, entry point `listener`) also works;
+  talker → listener over `my_chatter` confirmed.
+- **LiDAR working:** `sllidar_ros2` built (warnings only) and `ros2 launch sllidar_ros2
+  sllidar_c1_launch.py` publishes `/scan` at a steady ~10.0 Hz (~720 points/scan, frame
+  `laser`). ROS 2 Jazzy desktop installed on Mint (UBUNTU_CODENAME=noble, no workaround
+  needed) and the desktop sees the Pi's `/scan` over the wired network. **Milestone 2 done
+  (2026-11-04):** `/scan` visible in RViz on the desktop (Fixed Frame `laser`, LaserScan display).
+- **Encoder working (2026-11-05):** `firmware/encoder_test` counts every edge of A and B
+  (×4) with two `CHANGE` interrupts and copies `count` with interrupts paused. Measured
+  ~4200 counts per wheel turn, which confirms 150:1. Pins: left motor A→2, B→3; right
+  motor A→18, B→19 (20/21 stay free for the IMU). Table in `hardware/Wiring.md`. My ISRA sign is opposite to my original written
+  rule; I'll set the final sign with a "forward = up" test.
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
@@ -111,7 +130,8 @@ build it by discussing it with me.**
   I decided to defer this and keep working over Ethernet for now.
 - **Printer:** Prusa Core One, build volume 250 × 220 × 270mm.
 - **Wiring notes:** Arduino is powered and talks over USB from the Pi. Arduino GND must
-  connect directly to the driver GND.
+  connect directly to the driver GND. Motor listing confirms 150:1, 7 PPR; encoder runs
+  on 3.3–5V, so the Mega's 5V pin powers it. Wiring table goes in `hardware/Wiring.md`.
 
 ## Open questions
 - BOM total is ~$210 before shipping (phase 1 ≈ $110, LiDAR + IMU ≈ $100), plus
