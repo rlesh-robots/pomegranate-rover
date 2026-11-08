@@ -10,7 +10,11 @@ Velocity (angular) = (Vright - Vleft) / BaseWidth | ω = (v_right − v_left) / 
 
 Velocity (forward) = (Vleft + Vright) / 2 | v = (v_left + v_right) / 2
 
-Velocity (wheel) = Encoder counts * meters per count / t | (Δcounts*m/c)/Δt (meters per count is 0.06 millimeters / 0.0000598 meters)
+Velocity (wheel) = Encoder counts * meters per count / t | (Δcounts*m/c)/Δt 
+(meters per count is 0.06 millimeters / 0.0000598 meters
+4200 counts per turn, on an 80mm wheel, 2piR = 251.33 circumference
+251 / 4200 = 0.05976190476
+)
 
 LiDAR driver: sllidar_ros2, https://github.com/Slamtec/sllidar_ros2, commit 3430009. i already gitignored it.
 

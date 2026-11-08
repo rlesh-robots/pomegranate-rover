@@ -118,7 +118,9 @@ build it by discussing it with me.**
   (×4) with two `CHANGE` interrupts and copies `count` with interrupts paused. Measured
   ~4200 counts per wheel turn, which confirms 150:1. Pins: left motor A→2, B→3; right
   motor A→18, B→19 (20/21 stay free for the IMU). Table in `hardware/Wiring.md`. My ISRA sign is opposite to my original written
-  rule; I'll set the final sign with a "forward = up" test.
+  rule; I'll set the final sign with a "forward = up" test. The sketch also prints wheel
+  speed in m/s (100 ms `millis()` window, Δcounts/Δt, float math); a steady turn every 2 s
+  read ~0.13 m/s as predicted. Hand-spun max ~0.55 m/s (don't back-drive hard: gearbox, back-EMF).
 - **Hardware to buy:** M2 screw assortment (thread depth unknown: wall + ~2mm, never
   force), 3/8"-16 nuts for the caster, M2.5 standoffs for the Pi.
 - **Network problem (unsolved):** home has two networks. Wired (desktop, Pi eth0) is
