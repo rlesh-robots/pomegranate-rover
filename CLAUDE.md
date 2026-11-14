@@ -42,7 +42,8 @@ build it by discussing it with me.**
   On the Pi the CP210x adapter shows up as `/dev/ttyUSB0`; user `ubuntu` added to `dialout`.
 - **IMU (chosen, phase 3):** BNO085 (~$25), over the BNO055 (older, pricier) and MPU-6050
   (discontinued, so clone quality varies). Use the "game rotation vector" mode (no
-  magnetometer indoors). Likely connects to the Arduino Mega (Pi I2C has issues with BNO08x).
+  magnetometer indoors). Connects to the Arduino Mega over I2C (pins 20/21), since Pi I2C has
+  issues with BNO08x; its data goes to the Pi as a later protocol message type.
 - **Power:** one 3S (~11.1V) battery for everything: motors directly (through the driver),
   Pi through a 5V ≥5A regulator. Low brownout risk (motors stall <0.75A each), cheaper,
   lighter. Replaces my earlier two-battery idea.
@@ -60,6 +61,9 @@ build it by discussing it with me.**
   docs.ros.org Jazzy deb install (2025+ `ros2-apt-source` method). Pi locale is C.UTF-8 (fine).
 - **Desktop ROS:** install ROS 2 Jazzy (`ros-jazzy-desktop`) on Mint to run RViz locally.
   Chosen over X11 forwarding (laggy 3D), Foxglove (third-party) and Docker.
+- **Speed control on the Arduino:** the Pi sends target wheel speeds; the Arduino runs the
+  feedback loop (encoder → motor power) because it has precise, steady timing and sits next to
+  the hardware (like FRC motor controllers). Pi does kinematics, odometry, SLAM, navigation.
 - **Languages (leaning, not final):** Python for ROS 2 nodes (I know it well; ROS
   doesn't officially support Java). Arduino C++ for the firmware.
 - **Parts list:** `hardware/BOM.md`, which I write.
@@ -74,9 +78,10 @@ build it by discussing it with me.**
 - **Owned and useful:** Arduino Mega (label not confirmed) and an Uno, plus an
   Arduino starter kit (breadboards, wires, resistors, etc.). Arrived by 2026-11-04:
   LiDAR, 1 GM16 gearmotor (second one ordered), 3S battery,
-  charger, LiPo bag, 5V buck converter, wheels, IMU. Still missing: motor driver, caster,
-  second motor, small hardware.
-- **Parts (all marked Decided in the BOM, none bought):** Roaring Top 3S 2200mAh 25C
+  charger, LiPo bag, 5V buck converter, wheels, IMU. A parent agreed to buy the whole BOM at
+  once (2026-11-08); most has arrived. Still in transit: second gearmotor, motor driver (and
+  possibly other slow items).
+- **Parts (the BOM picks, all ordered):** Roaring Top 3S 2200mAh 25C
   XT60 battery (22.4×32×102mm, 159g), ISDT PD60S charger (USB-C PD input, XT60 +
   JST-XH balance port), fixed 5V 5A USB-C buck converter (8–32V in, no PD), 10A dual
   H-bridge driver (3–18V motor and logic), McMaster 24215T69 caster ($2.62: 2" nylon twin-wheel
@@ -93,12 +98,16 @@ build it by discussing it with me.**
   ring groove (Ø71–Ø89 around the axle) cut 6mm into the plate edge. Front of the plate is
   ~30mm ahead of the axle, so the tires stick out in front. Next: caster position, battery
   placement (tipping), second level.
-- **Next phase:** phase 1 parts to be ordered soon. CAD paused until I can measure the real
-  parts; meanwhile starting on software structure.
+- **CAD:** paused until I measure the real parts, which are mostly here now.
 - **Software progress:** derived diff-drive kinematics myself (in `docs/Tools.md`: inverse
   and forward, plus counts→m/s with Δcounts/Δt, 0.0000598 m per count). Protocol design:
   text lines ending in `\n`, cumulative encoder counts, Arduino watchdog stops motors;
-  `firmware/protocol.md` is empty and waiting for the written spec. Ran and read the
+  no retransmission (repeating commands + cumulative counts make lost lines harmless; maybe
+  an "OK" ack later for one-off commands). Draft motor command: `ML251R-129` (whole mm/s).
+  115200 baud (well under 5% used); Arduino watchdog timeout 500 ms. Arduino → Pi sends
+  cumulative counts + an Arduino timestamp (Pi computes speed with the Arduino's Δt, not
+  arrival times; a timestamp going backwards means the Arduino reset).
+  Spec being written in `firmware/protocol.md`. Ran and read the
   demo_nodes_py talker/listener/qos/serialized nodes; understand nodes, publishers,
   subscriptions, timers, callbacks, spin and QoS (tested the best-effort → reliable mismatch).
   Python classes/inheritance are new to me; practice still recommended.

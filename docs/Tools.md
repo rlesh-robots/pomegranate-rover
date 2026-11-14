@@ -17,6 +17,13 @@ Velocity (wheel) = Encoder counts * meters per count / t | (Δcounts*m/c)/Δt
 )
 
 LiDAR driver: sllidar_ros2, https://github.com/Slamtec/sllidar_ros2, commit 3430009. i already gitignored it.
+To launch the driver, these commands are necessary:
+
+cd ~/pomegranate-rover/ros2_ws
+source install/setup.bash
+ros2 launch sllidar_ros2 sllidar_c1_launch.py
+
+source install/setup.bash is needed because i have to tell ros2 where the install file is.
 
 ## For examples
 /opt/ros/jazzy/lib/python3.12/site-packages/demo_nodes_py/ \
